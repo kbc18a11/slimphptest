@@ -3,10 +3,8 @@ services:
   slim:
     build:
       context: .
-      dockerfile: ./apiapp/Dockerfile
+      dockerfile: ./Dockerfile
     container_name: slim
-    volumes:
-      - ./apiapp:/var/www/html
 
   nginx:
     image: nginx:latest
@@ -17,5 +15,5 @@ services:
     privileged: true
     ports: 
       - '8080:80'
-    depends_on:
+    links: 
       - 'slim'
